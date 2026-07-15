@@ -1,0 +1,6 @@
+{
+  "name": "世界杯终局预测排行榜平台",
+  "description": "世界杯半决赛、季军赛和决赛的比分预测与好友积分排行榜系统，包含AI足球战术分析助手。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
