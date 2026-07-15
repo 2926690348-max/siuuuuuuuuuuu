@@ -64,7 +64,8 @@ export default function App() {
   const fetchGlobalState = async () => {
     try {
       const res = await fetch('/api/state');
-      if (res.ok) {
+      const contentType = res.headers.get('content-type');
+      if (res.ok && contentType && contentType.includes('application/json')) {
         const data = await res.json();
         setMatches(data.matches);
         setRealChampion(data.realChampion);
@@ -79,7 +80,8 @@ export default function App() {
     if (!isSilent) setIsLoading(true);
     try {
       const res = await fetch(`/api/room/${code}`);
-      if (res.ok) {
+      const contentType = res.headers.get('content-type');
+      if (res.ok && contentType && contentType.includes('application/json')) {
         const data = await res.json();
         setRoom(data.room);
         setRankings(data.rankings);
@@ -111,7 +113,14 @@ export default function App() {
         }),
       });
 
-      const data = await res.json();
+      let data: any;
+      const contentType = res.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        data = await res.json();
+      } else {
+        throw new Error(`服务器响应异常 (状态码 ${res.status}): 服务器正在启动或处于离线状态，请稍后重试。`);
+      }
+
       if (!res.ok) {
         throw new Error(data.error || '加入房间失败');
       }
@@ -160,7 +169,14 @@ export default function App() {
         }),
       });
 
-      const data = await res.json();
+      let data: any;
+      const contentType = res.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        data = await res.json();
+      } else {
+        throw new Error(`服务器响应异常 (状态码 ${res.status}): 服务器正在启动或处于离线状态，请稍后重试。`);
+      }
+
       if (!res.ok) {
         throw new Error(data.error || '提交预测失败');
       }
@@ -270,7 +286,7 @@ export default function App() {
             </div>
             <div>
               <h1 className="text-base font-black text-white tracking-tighter uppercase leading-none flex items-center space-x-1.5">
-                <span>World Cup Oracle</span>
+                <span>EDGChampion</span>
                 <span className="text-[10px] bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 px-1 py-0.2 rounded font-bold tracking-widest">
                   2026世界杯
                 </span>

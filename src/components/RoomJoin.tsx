@@ -67,7 +67,7 @@ export default function RoomJoin({ onJoin, isLoading, onOpenBlueprint }: RoomJoi
         <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-3 shadow-[0_0_20px_rgba(234,179,8,0.4)] animate-pulse">
           <Trophy className="w-9 h-9 text-slate-950" />
         </div>
-        <h1 className="text-2xl font-black tracking-tight text-white uppercase">World Cup Oracle</h1>
+        <h1 className="text-2xl font-black tracking-tight text-white uppercase">EDGChampion</h1>
         <p className="text-yellow-500 text-[10px] font-bold tracking-[0.2em] uppercase mt-1">THE FINAL FOUR • SOCIAL SANDBOX</p>
       </div>
 
