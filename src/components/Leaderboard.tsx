@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Trophy, Award, Flame, CheckCircle, ChevronDown, ChevronUp, Share2, Sparkles, Copy, Users } from 'lucide-react';
+import { Trophy, Award, Flame, CheckCircle, ChevronDown, ChevronUp, Share2, Sparkles, Copy, Users, RefreshCw } from 'lucide-react';
 import { RankingEntry, Room, Match } from '../types';
 
 interface LeaderboardProps {
@@ -13,6 +13,15 @@ interface LeaderboardProps {
 export default function Leaderboard({ rankings, room, matches, currentUserId }: LeaderboardProps) {
   const [expandedUserId, setExpandedUserId] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+
+  if (!room) {
+    return (
+      <div className="py-12 text-center text-slate-500 text-sm">
+        <RefreshCw className="w-5 h-5 mx-auto mb-2 animate-spin text-yellow-500" />
+        加载排行榜数据中...
+      </div>
+    );
+  }
 
   const toggleExpand = (userId: string) => {
     if (expandedUserId === userId) {

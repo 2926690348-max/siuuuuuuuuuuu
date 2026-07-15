@@ -348,6 +348,14 @@ export default function App() {
               onOpenBlueprint={() => setIsBlueprintOpen(true)}
             />
           </div>
+        ) : !room ? (
+          /* Room Loading Skeleton */
+          <div className="py-20 flex flex-col items-center justify-center space-y-4">
+            <RefreshCw className="w-8 h-8 text-yellow-500 animate-spin" />
+            <p className="text-sm font-bold text-slate-400 uppercase tracking-widest animate-pulse">
+              正在同步竞技沙盘数据...
+            </p>
+          </div>
         ) : (
           /* Active room workspace */
           <div className="space-y-6">
